@@ -16,7 +16,7 @@ class TestZenTaoAddProduct(unittest.TestCase):
         """
         添加产品成功
         """
-        self.addpro.go_product_page()
+        self.addpro.go_to_product_page()
         self.addpro.go_add_product_page()
         self.addpro.input_product_name()
         self.addpro.input_product_code()
@@ -27,7 +27,7 @@ class TestZenTaoAddProduct(unittest.TestCase):
         """
         产品名称为空添加失败
         """
-        self.addpro.go_product_page()
+        self.addpro.go_to_product_page()
         self.addpro.go_add_product_page()
         self.addpro.input_product_name('')
         self.addpro.input_product_code('test2')
@@ -38,7 +38,7 @@ class TestZenTaoAddProduct(unittest.TestCase):
         """
         产品代号为空添加失败
         """
-        self.addpro.go_product_page()
+        self.addpro.go_to_product_page()
         self.addpro.go_add_product_page()
         self.addpro.input_product_name('alin2')
         self.addpro.input_product_code('')

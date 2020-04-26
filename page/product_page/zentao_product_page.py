@@ -1,36 +1,42 @@
 from common.base_page import BasePage
-
+from common.element_data_utils import ElementDataUtils
 
 class ZenTaoAddProductPage(BasePage):
     def __init__(self,  driver):
         super().__init__(driver)
-        self.product_page = {'element_name': '前往产品页面',
-                             'locator_type': 'xpath',
-                             'locator_value': "//li[@data-id='product']",
-                             'timeout': 3}
+        # self.go_product_page = {'element_name': '前往产品页面',
+        #                      'locator_type': 'xpath',
+        #                      'locator_value': "//li[@data-id='product']",
+        #                      'timeout': 3}
+        #
+        # self.add_product_page = {'element_name': '添加产品按钮',
+        #                          'locator_type': 'xpath',
+        #                          'locator_value': '//*[@id="pageActions"]/div/a',
+        #                          'timeout': 3}
+        #
+        # self.product_input = {'element_name': '产品名称输入框',
+        #                       'locator_type': 'xpath',
+        #                       'locator_value': '//input[@id="name"]',
+        #                       'timeout': 3}
+        #
+        # self.product_code_input = {'element_name': '产品代号输入框',
+        #                            'locator_type': 'xpath',
+        #                            'locator_value': '//input[@id="code"]',
+        #                            'timeout': 3}
+        #
+        # self.product_submit = {'element_name': '保存产品按钮',
+        #                        'locator_type': 'xpath',
+        #                        'locator_value': '//button[@id="submit"]',
+        #                        'timeout': 3}
+        elements = ElementDataUtils('product_page').get_element_info()
+        self.go_product_page = elements['go_product_page']
+        self.add_product_page = elements['add_product_page']
+        self.product_input = elements['product_input']
+        self.product_code_input = elements['product_code_input']
+        self.product_submit = elements['product_submit']
 
-        self.add_product_page = {'element_name': '添加产品按钮',
-                                 'locator_type': 'xpath',
-                                 'locator_value': '//*[@id="pageActions"]/div/a',
-                                 'timeout': 3}
-
-        self.product_input = {'element_name': '产品名称输入框',
-                              'locator_type': 'xpath',
-                              'locator_value': '//input[@id="name"]',
-                              'timeout': 3}
-
-        self.product_code_input = {'element_name': '产品代号输入框',
-                                   'locator_type': 'xpath',
-                                   'locator_value': '//input[@id="code"]',
-                                   'timeout': 3}
-
-        self.product_submit = {'element_name': '保存产品按钮',
-                               'locator_type': 'xpath',
-                               'locator_value': '//button[@id="submit"]',
-                               'timeout': 3}
-
-    def go_product_page(self):
-        self.click(self.product_page)
+    def go_to_product_page(self):
+        self.click(self.go_product_page)
 
     def go_add_product_page(self):
         self.click(self.add_product_page)

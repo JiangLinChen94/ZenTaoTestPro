@@ -16,7 +16,7 @@ class TestZenTaoAddProduct(unittest.TestCase):
         """
         添加故事成功
         """
-        self.addstory.go_product_page()
+        self.addstory.go_to_product_page()
         self.addstory.go_story_page()
         self.addstory.go_add_story_page()
         self.addstory.input_story_name()
@@ -27,7 +27,7 @@ class TestZenTaoAddProduct(unittest.TestCase):
         """
         故事名称为空添加失败
         """
-        self.addstory.go_product_page()
+        self.addstory.go_to_product_page()
         self.addstory.go_story_page()
         self.addstory.go_add_story_page()
         self.addstory.input_story_name('')
