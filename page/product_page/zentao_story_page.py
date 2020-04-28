@@ -1,5 +1,6 @@
 from common.base_page import BasePage
 from common.element_data_utils import ElementDataUtils
+from common.element_yaml_utils import ElementYamlUtils
 
 
 class ZenTaoAddStoryPage(BasePage):
@@ -29,12 +30,12 @@ class ZenTaoAddStoryPage(BasePage):
         #                      'locator_type': 'xpath',
         #                      'locator_value': '//*[@id="submit"]',
         #                      'timeout': 3}
-        elements = ElementDataUtils('product_page').get_element_info()
-        self.go_product_page = elements['go_product_page']
-        self.story_page = elements['story_page']
-        self.add_story_page = elements['add_story_page']
-        self.story_name = elements['story_name']
-        self.story_submit = elements['story_submit']
+        yaml_elements = ElementYamlUtils().get_ymal_info()
+        self.go_product_page = yaml_elements['go_product_page']
+        self.story_page = yaml_elements['story_page']
+        self.add_story_page = yaml_elements['add_story_page']
+        self.story_name = yaml_elements['story_name']
+        self.story_submit = yaml_elements['story_submit']
 
     def go_to_product_page(self):
         self.click(self.go_product_page)

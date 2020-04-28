@@ -1,5 +1,6 @@
 from common.base_page import BasePage
 from common.element_data_utils import ElementDataUtils
+from common.element_yaml_utils import ElementYamlUtils
 
 
 class ZenTaoLoginPage(BasePage):
@@ -20,10 +21,15 @@ class ZenTaoLoginPage(BasePage):
         #                      'locator_value': '//button[@id="submit"]',
         #                      'timeout': 3}
 
-        elements = ElementDataUtils('login_page').get_element_info()
-        self.username_input_box = elements['username_input_box']
-        self.password_input_box = elements['password_input_box']
-        self.login_button = elements['login_button']
+        # elements = ElementDataUtils('login_page').get_element_info()
+        # self.username_input_box = elements['username_input_box']
+        # self.password_input_box = elements['password_input_box']
+        # self.login_button = elements['login_button']
+
+        yaml_element = ElementYamlUtils().get_ymal_info()
+        self.username_input_box=yaml_element['username_input_box']
+        self.password_input_box = yaml_element['password_input_box']
+        self.login_button = yaml_element['login_button']
 
     def input_username(self, username='admin'):
         self.input(self.username_input_box, username)

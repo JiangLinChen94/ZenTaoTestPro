@@ -1,5 +1,6 @@
 from common.base_page import BasePage
 from common.element_data_utils import ElementDataUtils
+from common.element_yaml_utils import ElementYamlUtils
 
 class ZenTaoAddProductPage(BasePage):
     def __init__(self,  driver):
@@ -28,12 +29,19 @@ class ZenTaoAddProductPage(BasePage):
         #                        'locator_type': 'xpath',
         #                        'locator_value': '//button[@id="submit"]',
         #                        'timeout': 3}
-        elements = ElementDataUtils('product_page').get_element_info()
-        self.go_product_page = elements['go_product_page']
-        self.add_product_page = elements['add_product_page']
-        self.product_input = elements['product_input']
-        self.product_code_input = elements['product_code_input']
-        self.product_submit = elements['product_submit']
+        # elements = ElementDataUtils('product_page').get_element_info()
+        # self.go_product_page = elements['go_product_page']
+        # self.add_product_page = elements['add_product_page']
+        # self.product_input = elements['product_input']
+        # self.product_code_input = elements['product_code_input']
+        # self.product_submit = elements['product_submit']
+
+        yaml_elements = ElementYamlUtils().get_ymal_info()
+        self.go_product_page = yaml_elements['go_product_page']
+        self.add_product_page = yaml_elements['add_product_page']
+        self.product_input = yaml_elements['product_input']
+        self.product_code_input = yaml_elements['product_code_input']
+        self.product_submit = yaml_elements['product_submit']
 
     def go_to_product_page(self):
         self.click(self.go_product_page)
