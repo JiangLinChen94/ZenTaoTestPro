@@ -1360,3 +1360,11 @@
 2020-04-28 22:54:26,298 - common.log_utils - INFO - 保存故事按钮元素识别成功
 2020-04-28 22:54:26,340 - common.log_utils - INFO - 保存故事按钮点击操作成功
 2020-04-28 22:54:30,472 - common.log_utils - INFO - 关闭浏览器
+2020-05-02 17:01:59,374 - common.log_utils - INFO - 关闭浏览器
+2020-05-02 17:02:09,555 - common.log_utils - INFO - 关闭浏览器
+2020-05-02 17:02:19,732 - common.log_utils - INFO - 关闭浏览器
+2020-05-02 17:04:37,693 - common.log_utils - INFO - 设置浏览器最大化
+2020-05-02 17:04:39,837 - common.log_utils - INFO - 打开url地址http://127.0.0.1/zentao/user-login-L3plbnRhby8=.html
+2020-05-02 17:06:03,342 - common.log_utils - INFO - 设置浏览器最大化
+2020-05-02 17:06:05,432 - common.log_utils - INFO - 打开url地址http://127.0.0.1/zentao/user-login-L3plbnRhby8=.html
+2020-05-02 17:06:12,461 - common.log_utils - INFO - 关闭浏览器

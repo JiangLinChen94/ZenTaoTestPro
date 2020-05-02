@@ -1,13 +1,14 @@
 import unittest
 from selenium import webdriver
 from common.login import common_login
+from common.browser import Browser
 from page.product_page.zentao_plan_page import ZenTaoAddPlanPage
 
 
 class TestZenTaoAddProduct(unittest.TestCase):
 
     def setUp(self):
-        driver = webdriver.Chrome()
+        driver = Browser().get_driver()
         self.addplan = ZenTaoAddPlanPage(driver)
         self.addplan.set_driver()
         common_login(driver)
