@@ -29,19 +29,19 @@ class ZenTaoAddPlanPage(BasePage):
         #                      'locator_type': 'xpath',
         #                      'locator_value': '//*[@id="submit"]',
         #                      'timeout': 3}
-        # elements = ElementDataUtils('product_page').get_element_info()
-        # self.go_product_page = elements['go_product_page']
-        # self.plan_page = elements['plan_page']
-        # self.add_plan_page = elements['add_plan_page']
-        # self.plan_name = elements['plan_name']
-        # self.plan_submit = elements['plan_submit']
+        elements = ElementDataUtils('product_page').get_element_info()
+        self.go_product_page = elements['go_product_page']
+        self.plan_page = elements['plan_page']
+        self.add_plan_page = elements['add_plan_page']
+        self.plan_name = elements['plan_name']
+        self.plan_submit = elements['plan_submit']
 
-        yaml_element = ElementYamlUtils().get_ymal_info()
-        self.go_product_page = yaml_element['go_product_page']
-        self.plan_page = yaml_element['plan_page']
-        self.add_plan_page = yaml_element['add_plan_page']
-        self.plan_name = yaml_element['plan_name']
-        self.plan_submit = yaml_element['plan_submit']
+        # yaml_element = ElementYamlUtils().get_ymal_info()
+        # self.go_product_page = yaml_element['go_product_page']
+        # self.plan_page = yaml_element['plan_page']
+        # self.add_plan_page = yaml_element['add_plan_page']
+        # self.plan_name = yaml_element['plan_name']
+        # self.plan_submit = yaml_element['plan_submit']
 
     def go_to_product_page(self):
         self.click(self.go_product_page)

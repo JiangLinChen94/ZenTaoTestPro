@@ -4,6 +4,7 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from common.log_utils import logger
+from common.config_utils import ConfigUtils
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -43,7 +44,7 @@ class BasePage:
 
     def set_driver(self):
         self.set_browser_max()
-        self.open_url('http://127.0.0.1/zentao/user-login-L3plbnRhby8=.html')
+        self.open_url(ConfigUtils().test_url)
 
     def find_element(self, element_info):
         locator_element_name = element_info['element_name']

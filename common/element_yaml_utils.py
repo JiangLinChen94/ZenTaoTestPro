@@ -1,6 +1,9 @@
+import os
 import yaml
+from common.config_utils import local_config
 
-yaml_path = 'D:\selenium\ZenTaoTestPro\page_element_infos\page_element_infos.yml'
+current_path = os.path.abspath(os.path.dirname(__file__))
+yaml_path = os.path.join(current_path, '..', local_config.yaml_path)
 
 
 class ElementYamlUtils:

@@ -5,6 +5,7 @@ from common.config_utils import local_config
 
 current_path = os.path.abspath(os.path.dirname(__file__))
 webdriver_path = os.path.join(current_path, '..', local_config.driver_path)
+print(webdriver_path)
 
 
 class Browser:
@@ -42,6 +43,7 @@ class Browser:
 
     def __get_remote_driver(self):  # selenium支持分布式 grid ==>配置（你自己的代码编写、配置）
         pass
+
 
 if __name__ == '__main__':
     Browser().get_driver()

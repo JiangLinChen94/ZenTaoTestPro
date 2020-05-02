@@ -25,12 +25,23 @@ class ConfigUtils(object):
         driver_name_value = self.cfg.get('default', 'driver_name')
         return driver_name_value
 
+    @property
+    def excel_path(self):
+        excel_path_value = self.cfg.get('default', 'excel_path')
+        return excel_path_value
+
+    @property
+    def yaml_path(self):
+        yaml_path_value = self.cfg.get('default', 'yaml_path')
+        return yaml_path_value
+
 
 local_config = ConfigUtils()
 
 
 if __name__ == '__main__':
-    config = ConfigUtils()
-    print(config.test_url)
-    print(config.driver_path)
-    print(config.driver_name)
+    current_path = os.path.abspath(os.path.dirname(__file__))
+    print(local_config.test_url)
+    print(local_config.driver_path)
+    print(local_config.driver_name)
+    print(current_path, '..', local_config.excel_path)
