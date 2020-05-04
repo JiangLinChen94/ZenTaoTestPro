@@ -3,6 +3,9 @@ from time import sleep
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.keys import Keys
+
 from common.log_utils import logger
 from common.config_utils import ConfigUtils
 from selenium.webdriver.support.wait import WebDriverWait
@@ -21,23 +24,38 @@ class BasePage:
         logger.info('打开url地址%s' % url)
 
     def quit_browser(self):
+        """
+        关闭浏览器
+        """
         sleep(2)
         self.driver.quit()
         logger.info("关闭浏览器")
 
     def set_browser_max(self):
+        """
+        浏览器最大化
+        """
         self.driver.maximize_window()
         logger.info("设置浏览器最大化")
 
     def set_browser_min(self):
+        """
+        浏览器最小化
+        """
         self.driver.minimize_window()
         logger.info("设置浏览器最小化")
 
     def refresh(self):
+        """
+        刷新浏览器
+        """
         self.driver.refresh()
         logger.info("浏览器刷新操作")
 
     def get_title(self):
+        """
+        获取网页标题
+        """
         value = self.driver.title
         logger.info("获取网页标题，标题是%s" % value)
         return value
@@ -47,6 +65,9 @@ class BasePage:
         self.open_url(ConfigUtils().test_url)
 
     def find_element(self, element_info):
+        """
+        元素定位方法
+        """
         locator_element_name = element_info['element_name']
         locator_type_name = element_info['locator_type']
         locator_value_info = element_info['locator_value']
@@ -57,6 +78,10 @@ class BasePage:
             locator_type = By.NAME
         elif locator_type_name == 'xpath':
             locator_type = By.XPATH
+        elif locator_type_name =='link_text':
+            locator_type = By.LINK_TEXT
+        elif locator_type_name == 'css_selector':
+            locator_type = By.CSS_SELECTOR
         element = WebDriverWait(self.driver, int(locator_timeout))\
             .until(lambda x: x.find_element(locator_type, locator_value_info))
         logger.info("%s元素识别成功" % locator_element_name)
@@ -65,20 +90,142 @@ class BasePage:
         return element
 
     def click(self, element_info):
+        """
+        元素点击操作
+        """
         self.find_element(element_info).click()
         logger.info('%s点击操作成功' % element_info['element_name'])
 
     def input(self, element_info, content):
+        """
+        元素输入操作
+        """
         self.find_element(element_info).send_keys(content)
         logger.info("%s 输入内容【%s】" % (element_info['element_name'], content))
 
     def target_locator(self):
+        """
+        下拉至底部
+        """
         sleep(2)
         js = "var q=document.documentElement.scrollTop=10000"
         self.driver.execute_script(js)
         logger.info("下拉至底部")
 
-    def name_input(self, name):
-        for i in range(100):
-            name = i
-        return 'test'+name
+    # 表单切换
+    def frame_switch(self, frame_name=None):
+        """
+        表单切换
+        """
+        if frame_name is None:
+            print("Please enter the form element to jump to")
+            logger.info("没有输入页面元素")
+        else:
+            frame_name = self.find_element(frame_name)
+            self.driver.switch_to.frame(frame_name)
+            sleep(2)
+            logger.info("跳转至%s表单" % frame_name['element_name'])
+
+    def frame_default_content(self):
+        """
+        切回初始表单
+        """
+        self.driver.switch_to.default_content()
+        sleep(2)
+
+    # 句柄切换
+    def get_current_handle(self):
+        """
+        获取当前句柄
+        """
+        current_windows = self.driver.current_window_handle
+        title = self.driver.title
+        logger.info('获取%s句柄' % title)
+        return str(current_windows)
+
+
+    def go_other_handle(self, current_handles):
+        """
+        前往别的表单
+        """
+        for handle in self.driver.window_handles:
+            if handle != current_handles:
+                self.driver.switch_to.window(handle)
+        title = self.driver.title
+        logger.info('前往%s' % title)
+
+    def go_beginning_handle(self, current_handle):
+        """
+        返回初始表单
+        """
+        self.driver.switch_to.window(current_handle)
+        title = self.driver.title
+        logger.info('返回%s' % title)
+
+    # 警告框
+    def get_alert(self):
+        alert = self.driver.switch_to.alert
+        sleep(2)
+        alert_text = alert.text
+        alert.accept()
+        logger.info('接受警告框，警告框内容为%s' % alert_text)
+
+    # 鼠标操作
+    def mouse_operation(self, element_info, mouse_operate):
+        """
+        鼠标操作
+        """
+        above = self.find_element(element_info)
+        if mouse_operate == 'context_click':
+            ActionChains(self.driver).context_click(above).perform()
+        elif mouse_operate == 'double_click':
+            ActionChains(self.driver).double_click(above).perform()
+        elif mouse_operate == 'move_to_element':
+            ActionChains(self.driver).move_to_element(above).perform()
+        logger.info("正在进行%s" % mouse_operate)
+
+    def drag_element(self, element_info, element_info2):
+        """
+        鼠标拖动操作
+        """
+        drag = self.find_element(element_info)
+        drop = self.find_element(element_info2)
+        ActionChains(self.driver).drag_and_drop(drag, drop).perform()
+        logger.info("正在将%s拖动至%s" % (element_info['element_name'], element_info2['element_name']))
+
+    # 键盘操作
+    def key_enter(self, element_info):
+        """
+        回车
+        """
+        self.find_element(element_info).send_keys(Keys.ENTER)
+        logger.info("对%s进行回车" % element_info['element_name'])
+
+    def key_ctrl_a(self, element_info):
+        """
+        全选
+        """
+        self.find_element(element_info).send_keys(Keys.CONTROL, 'a')
+        logger.info("对%s全选" % element_info['element_name'])
+
+    def key_ctrl_c(self, element_info):
+        """
+        复制
+        """
+        self.find_element(element_info).send_keys(Keys.CONTROL, 'c')
+        logger.info("对%s复制" % element_info['element_name'])
+
+    def key_ctrl_v(self, element_info):
+        """
+        粘贴
+        """
+        self.find_element(element_info).send_keys(Keys.CONTROL, 'v')
+        logger.info("对%s粘贴" % element_info['element_name'])
+
+    def key_ctrl_x(self, element_info):
+        """
+        剪切
+        """
+        self.find_element(element_info).send_keys(Keys.CONTROL, 'x')
+        logger.info("对%s剪切" % element_info['element_name'])
+
