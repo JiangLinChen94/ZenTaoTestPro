@@ -21,7 +21,7 @@ class ZenTaoLoginPage(BasePage):
         #                      'locator_value': '//button[@id="submit"]',
         #                      'timeout': 3}
 
-        elements = ElementDataUtils('login_page').get_element_info()
+        elements = ElementDataUtils('login', 'login_page').get_element_info()
         self.username_input_box = elements['username_input_box']
         self.password_input_box = elements['password_input_box']
         self.login_button = elements['login_button']

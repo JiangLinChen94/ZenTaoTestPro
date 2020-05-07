@@ -29,12 +29,13 @@ class ZenTaoAddPlanPage(BasePage):
         #                      'locator_type': 'xpath',
         #                      'locator_value': '//*[@id="submit"]',
         #                      'timeout': 3}
-        elements = ElementDataUtils('product_page').get_element_info()
-        self.go_product_page = elements['go_product_page']
-        self.plan_page = elements['plan_page']
-        self.add_plan_page = elements['add_plan_page']
-        self.plan_name = elements['plan_name']
-        self.plan_submit = elements['plan_submit']
+        main_elements = ElementDataUtils('main', 'main_page').get_element_info()
+        self.go_product_page = main_elements['product_page']
+        plan_elements = ElementDataUtils('product', 'plan_page').get_element_info()
+        self.plan_page = plan_elements['plan_page']
+        self.add_plan_page = plan_elements['add_plan_page']
+        self.plan_name = plan_elements['plan_name']
+        self.plan_submit = plan_elements['plan_submit']
 
         # yaml_element = ElementYamlUtils().get_ymal_info()
         # self.go_product_page = yaml_element['go_product_page']

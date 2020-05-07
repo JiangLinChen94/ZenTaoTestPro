@@ -1,13 +1,11 @@
 import os
 from time import sleep
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
-
 from common.log_utils import logger
-from common.config_utils import ConfigUtils
+from common.config_utils import local_config
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -56,6 +54,18 @@ class BasePage:
         self.driver.refresh()
         logger.info("浏览器刷新操作")
 
+    def wait(self, seconds=local_config.time_out):
+        """
+        显示等待
+        """
+        sleep(seconds)
+
+    def implicitly_wait(self, seconds=local_config.time_out):
+        """
+        隐式等待
+        """
+        self.driver.implicitly_wait(seconds)
+
     def get_title(self):
         """
         获取网页标题
@@ -66,7 +76,7 @@ class BasePage:
 
     def set_driver(self):
         self.set_browser_max()
-        self.open_url(ConfigUtils().test_url)
+        self.open_url(local_config.test_url)
 
     def find_element(self, element_info):
         """
@@ -136,13 +146,14 @@ class BasePage:
         """
         表单切换
         """
+        self.implicitly_wait()
         if frame_name is None:
             print("Please enter the form element to jump to")
             logger.info("没有输入页面元素")
         else:
             frame_name = self.find_element(frame_name)
             self.driver.switch_to.frame(frame_name)
-            sleep(2)
+            self.wait(2)
             logger.info("跳转至%s表单" % frame_name['element_name'])
 
     def frame_default_content(self):

@@ -29,12 +29,13 @@ class ZenTaoAddProductPage(BasePage):
         #                        'locator_type': 'xpath',
         #                        'locator_value': '//button[@id="submit"]',
         #                        'timeout': 3}
-        elements = ElementDataUtils('product_page').get_element_info()
-        self.go_product_page = elements['go_product_page']
-        self.add_product_page = elements['add_product_page']
-        self.product_input = elements['product_input']
-        self.product_code_input = elements['product_code_input']
-        self.product_submit = elements['product_submit']
+        main_elements = ElementDataUtils('main', 'main_page').get_element_info()
+        self.go_product_page = main_elements['product_page']
+        product_elements = ElementDataUtils('product', 'product_page').get_element_info()
+        self.add_product_page = product_elements['add_product_page']
+        self.product_input = product_elements['product_input']
+        self.product_code_input = product_elements['product_code_input']
+        self.product_submit = product_elements['product_submit']
 
         # yaml_elements = ElementYamlUtils().get_ymal_info()
         # self.go_product_page = yaml_elements['go_product_page']

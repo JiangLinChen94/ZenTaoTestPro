@@ -35,6 +35,11 @@ class ConfigUtils(object):
         yaml_path_value = self.cfg.get('default', 'yaml_path')
         return yaml_path_value
 
+    @property
+    def time_out(self):
+        time_out_value = float(self.cfg.get('default', 'time_out'))
+        return time_out_value
+
 
 local_config = ConfigUtils()
 
@@ -45,3 +50,4 @@ if __name__ == '__main__':
     print(local_config.driver_path)
     print(local_config.driver_name)
     print(current_path, '..', local_config.excel_path)
+    print(type(local_config.time_out), local_config.time_out)

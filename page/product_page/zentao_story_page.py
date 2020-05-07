@@ -30,12 +30,13 @@ class ZenTaoAddStoryPage(BasePage):
         #                      'locator_type': 'xpath',
         #                      'locator_value': '//*[@id="submit"]',
         #                      'timeout': 3}
-        excel_elements = ElementDataUtils('product_page').get_element_info()
-        self.go_product_page = excel_elements['go_product_page']
-        self.story_page = excel_elements['story_page']
-        self.add_story_page = excel_elements['add_story_page']
-        self.story_name = excel_elements['story_name']
-        self.story_submit = excel_elements['story_submit']
+        main_elements = ElementDataUtils('main', 'main_page').get_element_info()
+        self.go_product_page = main_elements['product_page']
+        story_elements = ElementDataUtils('product', 'story_page').get_element_info()
+        self.story_page = story_elements['story_page']
+        self.add_story_page = story_elements['add_story_page']
+        self.story_name = story_elements['story_name']
+        self.story_submit = story_elements['story_submit']
         # yaml_elements = ElementYamlUtils().get_ymal_info()
         # self.go_product_page = yaml_elements['go_product_page']
         # self.story_page = yaml_elements['story_page']
