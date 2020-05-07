@@ -1,6 +1,7 @@
 import os
 from time import sleep
 from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
@@ -194,15 +195,14 @@ class BasePage:
 
     # 警告框
     def switch_to_alert(self, action='accept', time_out=local_config.time_out):
-        self.wait(time_out)
-        alert = self.driver.switch_to.alert()
+        WebDriverWait(self.driver, time_out).until(EC.alert_is_present())
+        alert = self.driver.switch_to.alert
         alert_text = alert.text
         if action == 'accept':
             alert.accept()
-            logger.info('接受警告框，警告框内容为%s' % alert_text)
-        else:
+        elif action == 'dismiss':
             alert.dismiss()
-            logger.info('取消警告框，警告框内容为%s' % alert_text)
+        return alert_text
 
     # 鼠标操作
     def mouse_operation(self, element_info, mouse_operate):
