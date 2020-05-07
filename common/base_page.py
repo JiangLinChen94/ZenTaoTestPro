@@ -193,25 +193,29 @@ class BasePage:
         logger.info('返回%s' % title)
 
     # 警告框
-    def get_alert(self):
-        alert = self.driver.switch_to.alert
-        sleep(2)
+    def switch_to_alert(self, action='accept', time_out=local_config.time_out):
+        self.wait(time_out)
+        alert = self.driver.switch_to.alert()
         alert_text = alert.text
-        alert.accept()
-        logger.info('接受警告框，警告框内容为%s' % alert_text)
+        if action == 'accept':
+            alert.accept()
+            logger.info('接受警告框，警告框内容为%s' % alert_text)
+        else:
+            alert.dismiss()
+            logger.info('取消警告框，警告框内容为%s' % alert_text)
 
     # 鼠标操作
     def mouse_operation(self, element_info, mouse_operate):
         """
         鼠标操作
         """
-        above = self.find_element(element_info)
+        element = self.find_element(element_info)
         if mouse_operate == 'context_click':
-            ActionChains(self.driver).context_click(above).perform()
+            ActionChains(self.driver).context_click(element).perform()
         elif mouse_operate == 'double_click':
-            ActionChains(self.driver).double_click(above).perform()
+            ActionChains(self.driver).double_click(element).perform()
         elif mouse_operate == 'move_to_element':
-            ActionChains(self.driver).move_to_element(above).perform()
+            ActionChains(self.driver).move_to_element(element).perform()
         logger.info("正在进行%s" % mouse_operate)
 
     def drag_element(self, element_info, element_info2):
