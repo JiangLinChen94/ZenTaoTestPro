@@ -16,12 +16,16 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    def open_url(self, url):
+    def open_url(self, url=None):
         """
         浏览器操作封装
         """
-        self.driver.get(url)
-        logger.info('打开url地址%s' % url)
+        if url is None:
+            print('Please enter the url')
+            logger.info('没有输入王者')
+        else:
+            self.driver.get(url)
+            logger.info('打开url地址%s' % url)
 
     def quit_browser(self):
         """
@@ -103,6 +107,7 @@ class BasePage:
         self.find_element(element_info).send_keys(content)
         logger.info("%s 输入内容【%s】" % (element_info['element_name'], content))
 
+    # selenium 执行 js
     def target_locator(self):
         """
         下拉至底部
@@ -111,6 +116,20 @@ class BasePage:
         js = "var q=document.documentElement.scrollTop=10000"
         self.driver.execute_script(js)
         logger.info("下拉至底部")
+
+    def execute_script(self, js_str, element_info=None):
+        if element_info:
+            self.driver.execute_script(js_str)
+        else:
+            self.driver.execute_script(js_str, None)
+
+    def delete_element_attribute(self, element_info, attribute_name):
+        element = self.find_element(element_info)
+        self.execute_script('argument[0].removeAttribute("%s");' % attribute_name, element)
+
+    def update_element_attribute(self, element_info, attribute_name, attribute_value):
+        element = self.find_element(element_info)
+        self.execute_script('argument[0].removeAttribute("%s","%s");' % (attribute_name, attribute_value), element)
 
     # 表单切换
     def frame_switch(self, frame_name=None):

@@ -5,7 +5,6 @@ from common.config_utils import local_config
 
 current_path = os.path.abspath(os.path.dirname(__file__))
 webdriver_path = os.path.join(current_path, '..', local_config.driver_path)
-print(webdriver_path)
 
 
 class Browser:
