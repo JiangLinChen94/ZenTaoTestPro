@@ -10,9 +10,8 @@ driver.get("http://www.baidu.com")
 bp = BasePage(driver)
 
 # search_windows = driver.current_window_handle
-a = bp.get_current_handle()
+a = bp.switch_to_window_by_title(bp.get_title())
 driver.find_element(By.XPATH, '//*[@id="lg"]/map/area').click()
-bp.go_other_handle(a)
 # all_handles = driver.window_handles
 # for handle in all_handles:
 #     if handle != bp.all_handles():

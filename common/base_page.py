@@ -13,6 +13,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 class BasePage:
 
     def __init__(self, driver):
+        # self.driver = webdriver.Chrome()
         self.driver = driver
 
     def open_url(self, url=None):
@@ -100,7 +101,7 @@ class BasePage:
         # element = WebDriverWait(self.driver, int(locator_timeout))\
         #     .until(lambda x: x.find_element(locator_type, locator_value_info))
         # logger.info("%s元素识别成功" % locator_element_name)
-        element = WebDriverWait(self.driver, int(locator_timeout))\
+        element = WebDriverWait(self.driver, float(locator_timeout))\
             .until(EC.presence_of_element_located((locator_type_name, locator_value_info)))
         logger.info("%s元素识别成功" % locator_element_name)
         return element
@@ -166,25 +167,29 @@ class BasePage:
         sleep(2)
 
     # 句柄切换
-    def get_current_handle(self):
-        """
-        获取当前句柄
-        """
-        current_windows = self.driver.current_window_handle
-        title = self.driver.title
-        logger.info('获取%s句柄' % title)
-        return str(current_windows)
+    def get_windows_handle(self):
+        return self.driver.current_window_handle
+
+    def switch_to_window_by_handle(self, window_handle):
+        self.driver.switch_to.window(window_handle)
+
+    # 根据title切换句柄
+    def switch_to_window_by_title(self, title):
+        window_handles = self.driver.current_window_handle
+        for window_handle in window_handles:
+            if WebDriverWait(self.driver, local_config.time_out).until(EC.title_contains(title)):
+                self.driver.switch_to.window(window_handle)
+                break
+
+    # 根据url切换句柄
+    def switch_to_window_by_url(self, url):
+        window_handles = self.driver.current_window_handle
+        for window_handle in window_handles:
+            if WebDriverWait(self.driver, local_config.time_out).until(EC.url_contains(url)):
+                self.driver.switch_to.window(window_handle)
+                break
 
 
-    def go_other_handle(self, current_handles):
-        """
-        前往别的表单
-        """
-        for handle in self.driver.window_handles:
-            if handle != current_handles:
-                self.driver.switch_to.window(handle)
-        title = self.driver.title
-        logger.info('前往%s' % title)
 
     def go_beginning_handle(self, current_handle):
         """
@@ -206,18 +211,17 @@ class BasePage:
         return alert_text
 
     # 鼠标操作
-    def mouse_operation(self, element_info, mouse_operate):
-        """
-        鼠标操作
-        """
+    def move_to_element_by_mouse(self, element_info):
         element = self.find_element(element_info)
-        if mouse_operate == 'context_click':
-            ActionChains(self.driver).context_click(element).perform()
-        elif mouse_operate == 'double_click':
-            ActionChains(self.driver).double_click(element).perform()
-        elif mouse_operate == 'move_to_element':
-            ActionChains(self.driver).move_to_element(element).perform()
-        logger.info("正在进行%s" % mouse_operate)
+        ActionChains(self.driver).move_to_element(element).perform()
+
+    def long_press_element(self, element_info, senconds = local_config.time_out):
+        element = self.find_element(element_info)
+        ActionChains(self.driver).click_and_hold(element).pause(senconds).release(element_info)
+
+    def double_click_element(self, element_info):
+        element = self.find_element(element_info)
+        ActionChains(self.driver).double_click(element).perform()
 
     def drag_element(self, element_info, element_info2):
         """
