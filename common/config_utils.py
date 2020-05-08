@@ -40,6 +40,11 @@ class ConfigUtils(object):
         time_out_value = float(self.cfg.get('default', 'time_out'))
         return time_out_value
 
+    @property
+    def screenshot_path(self):
+        screenshot_path_value = self.cfg.get('default', 'screenshot_path')
+        return screenshot_path_value
+
 
 local_config = ConfigUtils()
 

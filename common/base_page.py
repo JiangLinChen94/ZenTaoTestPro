@@ -1,4 +1,5 @@
 import os
+import time
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,6 +10,7 @@ from common.log_utils import logger
 from common.config_utils import local_config
 from selenium.webdriver.support.wait import WebDriverWait
 
+current_path = os.path.abspath(os.path.dirname(__file__))
 
 class BasePage:
 
@@ -267,4 +269,15 @@ class BasePage:
         """
         self.find_element(element_info).send_keys(Keys.CONTROL, 'x')
         logger.info("对%s剪切" % element_info['element_name'])
+
+    # 截图
+    def screenshot_as_file(self, *screenshot_path):
+        if len(screenshot_path) == 0:
+            screenshot_filepath = local_config.screenshot_path
+        else:
+            screenshot_filepath = screenshot_path[0]
+        now = time.strftime('%Y_%m_%d_%H_%M_%S_')
+        print(now)
+        screenshot_filepath = os.path.join(current_path, screenshot_filepath, 'UITest%s.png' % now)
+        self.driver.get_screenshot_as_file(screenshot_filepath)
 
