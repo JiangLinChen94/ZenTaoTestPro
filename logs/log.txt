@@ -2162,3 +2162,66 @@
 2020-05-08 15:23:14,848 - common.log_utils - INFO - 设置浏览器最大化
 2020-05-08 15:46:23,146 - common.log_utils - INFO - 获取网页标题，标题是
 2020-05-08 15:46:23,149 - common.log_utils - INFO - 获取网页标题，标题是
+2020-05-08 16:37:31,025 - common.log_utils - INFO - 设置浏览器最大化
+2020-05-08 16:37:31,390 - common.log_utils - INFO - 打开url地址http://127.0.0.1/zentao/user-login-L3plbnRhby8=.html
+2020-05-08 16:37:31,405 - common.log_utils - INFO - 用户名输入框元素识别成功
+2020-05-08 16:37:31,448 - common.log_utils - INFO - 用户名输入框 输入内容【admin】
+2020-05-08 16:37:31,455 - common.log_utils - INFO - 密码输入框元素识别成功
+2020-05-08 16:37:31,503 - common.log_utils - INFO - 密码输入框 输入内容【654321】
+2020-05-08 16:37:31,514 - common.log_utils - INFO - 登录按钮元素识别成功
+2020-05-08 16:37:31,552 - common.log_utils - INFO - 登录按钮点击操作成功
+2020-05-08 16:37:35,675 - common.log_utils - INFO - 关闭浏览器
+2020-05-08 16:37:40,849 - common.log_utils - INFO - 设置浏览器最大化
+2020-05-08 16:37:41,207 - common.log_utils - INFO - 打开url地址http://127.0.0.1/zentao/user-login-L3plbnRhby8=.html
+2020-05-08 16:37:41,217 - common.log_utils - INFO - 用户名输入框元素识别成功
+2020-05-08 16:37:41,257 - common.log_utils - INFO - 用户名输入框 输入内容【admin】
+2020-05-08 16:37:41,265 - common.log_utils - INFO - 密码输入框元素识别成功
+2020-05-08 16:37:41,338 - common.log_utils - INFO - 密码输入框 输入内容【alin19941226061X】
+2020-05-08 16:37:41,348 - common.log_utils - INFO - 登录按钮元素识别成功
+2020-05-08 16:37:41,387 - common.log_utils - INFO - 登录按钮点击操作成功
+2020-05-08 16:37:46,134 - common.log_utils - INFO - 关闭浏览器
+2020-05-08 16:37:51,312 - common.log_utils - INFO - 设置浏览器最大化
+2020-05-08 16:37:51,692 - common.log_utils - INFO - 打开url地址http://127.0.0.1/zentao/user-login-L3plbnRhby8=.html
+2020-05-08 16:37:51,710 - common.log_utils - INFO - 用户名输入框元素识别成功
+2020-05-08 16:37:51,775 - common.log_utils - INFO - 用户名输入框 输入内容【admmm】
+2020-05-08 16:37:51,787 - common.log_utils - INFO - 密码输入框元素识别成功
+2020-05-08 16:37:51,912 - common.log_utils - INFO - 密码输入框 输入内容【alin19941226061X】
+2020-05-08 16:37:51,931 - common.log_utils - INFO - 登录按钮元素识别成功
+2020-05-08 16:37:51,992 - common.log_utils - INFO - 登录按钮点击操作成功
+2020-05-08 16:37:56,110 - common.log_utils - INFO - 关闭浏览器
+2020-05-08 16:42:43,786 - common.log_utils - INFO - 设置浏览器最大化
+2020-05-08 16:42:44,101 - common.log_utils - INFO - 打开url地址http://127.0.0.1/zentao/user-login-L3plbnRhby8=.html
+2020-05-08 16:42:44,111 - common.log_utils - INFO - 用户名输入框元素识别成功
+2020-05-08 16:42:44,151 - common.log_utils - INFO - 用户名输入框 输入内容【admin】
+2020-05-08 16:42:44,161 - common.log_utils - INFO - 密码输入框元素识别成功
+2020-05-08 16:42:44,236 - common.log_utils - INFO - 密码输入框 输入内容【alin19941226061X】
+2020-05-08 16:42:44,245 - common.log_utils - INFO - 登录按钮元素识别成功
+2020-05-08 16:42:44,285 - common.log_utils - INFO - 登录按钮点击操作成功
+2020-05-08 16:42:48,852 - common.log_utils - INFO - 关闭浏览器
+2020-05-08 16:45:25,767 - common.log_utils - INFO - 设置浏览器最大化
+2020-05-08 16:45:26,076 - common.log_utils - INFO - 打开url地址http://127.0.0.1/zentao/user-login-L3plbnRhby8=.html
+2020-05-08 16:45:26,087 - common.log_utils - INFO - 用户名输入框元素识别成功
+2020-05-08 16:45:26,121 - common.log_utils - INFO - 用户名输入框 输入内容【admin】
+2020-05-08 16:45:26,128 - common.log_utils - INFO - 密码输入框元素识别成功
+2020-05-08 16:45:26,176 - common.log_utils - INFO - 密码输入框 输入内容【654321】
+2020-05-08 16:45:26,183 - common.log_utils - INFO - 登录按钮元素识别成功
+2020-05-08 16:45:26,216 - common.log_utils - INFO - 登录按钮点击操作成功
+2020-05-08 16:45:30,336 - common.log_utils - INFO - 关闭浏览器
+2020-05-08 16:45:35,507 - common.log_utils - INFO - 设置浏览器最大化
+2020-05-08 16:45:35,816 - common.log_utils - INFO - 打开url地址http://127.0.0.1/zentao/user-login-L3plbnRhby8=.html
+2020-05-08 16:45:35,825 - common.log_utils - INFO - 用户名输入框元素识别成功
+2020-05-08 16:45:35,861 - common.log_utils - INFO - 用户名输入框 输入内容【admin】
+2020-05-08 16:45:35,869 - common.log_utils - INFO - 密码输入框元素识别成功
+2020-05-08 16:45:35,939 - common.log_utils - INFO - 密码输入框 输入内容【alin19941226061X】
+2020-05-08 16:45:35,948 - common.log_utils - INFO - 登录按钮元素识别成功
+2020-05-08 16:45:35,985 - common.log_utils - INFO - 登录按钮点击操作成功
+2020-05-08 16:45:40,523 - common.log_utils - INFO - 关闭浏览器
+2020-05-08 16:45:45,696 - common.log_utils - INFO - 设置浏览器最大化
+2020-05-08 16:45:46,418 - common.log_utils - INFO - 打开url地址http://127.0.0.1/zentao/user-login-L3plbnRhby8=.html
+2020-05-08 16:45:46,434 - common.log_utils - INFO - 用户名输入框元素识别成功
+2020-05-08 16:45:46,496 - common.log_utils - INFO - 用户名输入框 输入内容【admmm】
+2020-05-08 16:45:46,509 - common.log_utils - INFO - 密码输入框元素识别成功
+2020-05-08 16:45:46,639 - common.log_utils - INFO - 密码输入框 输入内容【alin19941226061X】
+2020-05-08 16:45:46,653 - common.log_utils - INFO - 登录按钮元素识别成功
+2020-05-08 16:45:46,708 - common.log_utils - INFO - 登录按钮点击操作成功
+2020-05-08 16:45:50,831 - common.log_utils - INFO - 关闭浏览器

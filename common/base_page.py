@@ -277,7 +277,6 @@ class BasePage:
         else:
             screenshot_filepath = screenshot_path[0]
         now = time.strftime('%Y_%m_%d_%H_%M_%S_')
-        print(now)
-        screenshot_filepath = os.path.join(current_path, screenshot_filepath, 'UITest%s.png' % now)
+        screenshot_filepath = os.path.join(current_path, '..', screenshot_filepath, 'UITest%s.png' % now)
         self.driver.get_screenshot_as_file(screenshot_filepath)
 

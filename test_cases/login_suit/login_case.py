@@ -18,6 +18,7 @@ class TestZenTaoLogin(unittest.TestCase):
         self.login.input_username()
         self.login.input_password()
         self.login.click_login_button()
+        self.login.screenshot_as_file()
 
     def test_login_username_error(self):
         """
@@ -26,6 +27,7 @@ class TestZenTaoLogin(unittest.TestCase):
         self.login.input_username('admmm')
         self.login.input_password()
         self.login.click_login_button()
+        self.login.screenshot_as_file()
 
     def test_login_password_error(self):
         """
@@ -34,6 +36,7 @@ class TestZenTaoLogin(unittest.TestCase):
         self.login.input_username()
         self.login.input_password('654321')
         self.login.click_login_button()
+        self.login.screenshot_as_file()
 
     def tearDown(self):
         self.login.quit_browser()
