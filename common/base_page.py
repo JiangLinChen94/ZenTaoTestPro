@@ -21,7 +21,7 @@ class BasePage:
         """
         if url is None:
             print('Please enter the url')
-            logger.info('没有输入王者')
+            logger.info('没有输入网址')
         else:
             self.driver.get(url)
             logger.info('打开url地址%s' % url)
@@ -97,11 +97,12 @@ class BasePage:
             locator_type = By.LINK_TEXT
         elif locator_type_name == 'css_selector':
             locator_type = By.CSS_SELECTOR
+        # element = WebDriverWait(self.driver, int(locator_timeout))\
+        #     .until(lambda x: x.find_element(locator_type, locator_value_info))
+        # logger.info("%s元素识别成功" % locator_element_name)
         element = WebDriverWait(self.driver, int(locator_timeout))\
-            .until(lambda x: x.find_element(locator_type, locator_value_info))
+            .until(EC.presence_of_element_located((locator_type_name, locator_value_info)))
         logger.info("%s元素识别成功" % locator_element_name)
-        # element = WebDriverWait(self.driver, locator_timeout)\
-        #     .until(EC.presence_of_element_located(locator_type, locator_value_info))
         return element
 
     def click(self, element_info):
