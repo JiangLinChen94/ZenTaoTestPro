@@ -5,7 +5,7 @@ from Action.login_action import LoginAction
 from Action.user_quit_action import UserQuitAction
 
 
-class TestZenTaoLogin(unittest.TestCase):
+class QuitTest(unittest.TestCase):
 
     def setUp(self) -> None:
         self.base_page = BasePage(Browser().get_driver())
