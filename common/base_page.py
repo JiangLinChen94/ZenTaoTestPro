@@ -78,9 +78,10 @@ class BasePage:
         logger.info("获取网页标题，标题是%s" % value)
         return value
 
-    def set_driver(self):
+    def set_driver(self, url=local_config.test_url):
         self.set_browser_max()
-        self.open_url(local_config.test_url)
+        self.implicitly_wait()
+        self.open_url(url)
 
     def find_element(self, element_info):
         """

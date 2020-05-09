@@ -40,5 +40,9 @@ class ZenTaoLoginPage(BasePage):
     def click_login_button(self):
         self.click(self.login_button)
 
+    def get_login_fail_alert_content(self):
+        return self.switch_to_alert()
+
+
 
 
