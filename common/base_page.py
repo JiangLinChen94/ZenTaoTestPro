@@ -23,12 +23,11 @@ class BasePage:
         """
         浏览器操作封装
         """
-        if url is None:
-            print('Please enter the url')
-            logger.info('没有输入网址')
-        else:
+        try:
             self.driver.get(url)
             logger.info('打开url地址%s' % url)
+        except Exception as e:
+            logger.error('无法打开指定网址，原因书%s' % e.__str__())
 
     def quit_browser(self):
         """
@@ -94,34 +93,46 @@ class BasePage:
         :param element_info: 元素信息参数，字典类型{}
         :return: element对象
         """
-        locator_element_name = element_info['element_name']
-        locator_type_name = element_info['locator_type']
-        locator_value_info = element_info['locator_value']
-        locator_timeout = element_info['timeout']
-        if locator_type_name == 'id':
-            locator_type = By.ID
-        elif locator_type_name == 'name':
-            locator_type = By.NAME
-        elif locator_type_name == 'xpath':
-            locator_type = By.XPATH
-        elif locator_type_name =='link_text':
-            locator_type = By.LINK_TEXT
-        elif locator_type_name == 'css_selector':
-            locator_type = By.CSS_SELECTOR
-        # element = WebDriverWait(self.driver, int(locator_timeout))\
-        #     .until(lambda x: x.find_element(locator_type, locator_value_info))
-        # logger.info("%s元素识别成功" % locator_element_name)
-        element = WebDriverWait(self.driver, float(locator_timeout))\
-            .until(EC.presence_of_element_located((locator_type_name, locator_value_info)))
-        logger.info("%s元素识别成功" % locator_element_name)
+        try:
+            locator_element_name = element_info['element_name']
+            locator_type_name = element_info['locator_type']
+            locator_value_info = element_info['locator_value']
+            locator_timeout = element_info['timeout']
+            if locator_type_name == 'id':
+                locator_type = By.ID
+            elif locator_type_name == 'name':
+                locator_type = By.NAME
+            elif locator_type_name == 'xpath':
+                locator_type = By.XPATH
+            elif locator_type_name =='link_text':
+                locator_type = By.LINK_TEXT
+            elif locator_type_name == 'css_selector':
+                locator_type = By.CSS_SELECTOR
+            # element = WebDriverWait(self.driver, int(locator_timeout))\
+            #     .until(lambda x: x.find_element(locator_type, locator_value_info))
+            # logger.info("%s元素识别成功" % locator_element_name)
+            element = WebDriverWait(self.driver, float(locator_timeout))\
+                .until(EC.presence_of_element_located((locator_type_name, locator_value_info)))
+            logger.info("%s元素识别成功" % locator_element_name)
+        except Exception as e:
+            logger.error("[%s]元素无法识别，原因是%s" % (element_info['element_name'], e.__str__()))
+            self.screenshot_as_file()
+        # finally:
+        #     if element is None:
+        #         element = ''
         return element
 
     def click(self, element_info):
         """
         元素点击操作
         """
-        self.find_element(element_info).click()
-        logger.info('%s点击操作成功' % element_info['element_name'])
+        element = self.find_element(element_info)
+        try:
+            element.click()
+            logger.info('[%s]点击操作成功' % element_info['element_name'])
+        except Exception as e:
+            logger.error('[%s]元素点击失败，原因是%s'% (element_info['element_name'], e.__str__()))
+            self.screenshot_as_file()
 
     def input(self, element_info, content):
         """
@@ -214,10 +225,13 @@ class BasePage:
         WebDriverWait(self.driver, time_out).until(EC.alert_is_present())
         alert = self.driver.switch_to.alert
         alert_text = alert.text
+        logger.info("检测到警告框，内容%s：" % alert_text)
         if action == 'accept':
             alert.accept()
+            logger.info("接受警告框")
         elif action == 'dismiss':
             alert.dismiss()
+            logger.info("取消警告框")
         return alert_text
 
     # 鼠标操作

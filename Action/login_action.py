@@ -18,7 +18,6 @@ class LoginAction:
 
     def login_success(self, username, password):
         self.login_action(username, password)
-        self.login_page.screenshot_as_file()
         return ZenTaoMainPage(self.login_page.driver)
 
     def default_login(self):
