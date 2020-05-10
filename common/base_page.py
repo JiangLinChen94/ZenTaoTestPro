@@ -12,6 +12,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 current_path = os.path.abspath(os.path.dirname(__file__))
 
+
 class BasePage:
 
     def __init__(self, driver):
@@ -89,7 +90,9 @@ class BasePage:
 
     def find_element(self, element_info):
         """
-        元素定位方法
+        根据提供的元素参数信息进行元素的查找
+        :param element_info: 元素信息参数，字典类型{}
+        :return: element对象
         """
         locator_element_name = element_info['element_name']
         locator_type_name = element_info['locator_type']
