@@ -1,33 +1,37 @@
 import os
 import logging
+import time
+from common.config_utils import local_config
 
-current_path = os.path.dirname(__file__)  # 获取文件当前路径
-log_path = os.path.join(current_path, '../logs/log.txt')
-
-
-class LogUtils:
-    def __init__(self, log_file_path=log_path):
-        self.log_file_path = log_file_path
-        self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(level=logging.INFO)
-        console = logging.StreamHandler()
-        formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-        console.setFormatter(formatter)
-
-        file_log = logging.FileHandler(log_path)
-        file_log.setFormatter(formatter)
-        self.logger.addHandler(console)
-        self.logger.addHandler(file_log)
-
-    def info(self, message):
-        self.logger.info(message)
-
-    def error(self, message):
-        self.logger.error(message)
+current_path = os.path.dirname(__file__)
+log_path = os.path.join(current_path, '..', local_config.log_path)
 
 
-logger = LogUtils()
+class LogUtil(object):
+    def __init__(self, logger=None):
+        self.log_name = os.path.join(log_path, 'UITest_%s.log' % time.strftime('%Y_%m_%d'))
+        self.logger = logging.getLogger(logger)
+        self.logger.setLevel(local_config.log_level)  #
 
+        self.fh = logging.FileHandler(self.log_name, 'a', encoding='utf-8')
+        self.fh.setLevel(local_config.log_level)
+        self.ch = logging.StreamHandler()
+        self.ch.setLevel(local_config.log_level)
+
+        formatter = logging.Formatter(
+            '[%(asctime)s] %(filename)s->%(funcName)s line:%(lineno)d [%(levelname)s] : %(message)s')
+        self.fh.setFormatter(formatter)
+        self.ch.setFormatter(formatter)
+        self.logger.addHandler(self.fh)
+        self.logger.addHandler(self.ch)
+        self.fh.close()
+        self.ch.close()
+
+    def get_log(self):
+        return self.logger
+
+
+logger = LogUtil().get_log()
 
 if __name__ == '__main__':
     # log_utils = LogUtils()

@@ -45,6 +45,16 @@ class ConfigUtils(object):
         screenshot_path_value = self.cfg.get('default', 'screenshot_path')
         return screenshot_path_value
 
+    @property
+    def log_path(self):
+        log_path_value = self.cfg.get('default', 'log_path')
+        return log_path_value
+
+    @property
+    def log_level(self):
+        log_level_value = int(self.cfg.get('default', 'log_level'))
+        return log_level_value
+
 
 local_config = ConfigUtils()
 
