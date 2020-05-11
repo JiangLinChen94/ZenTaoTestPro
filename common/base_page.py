@@ -210,8 +210,6 @@ class BasePage:
                 self.driver.switch_to.window(window_handle)
                 break
 
-
-
     def go_beginning_handle(self, current_handle):
         """
         返回初始表单
@@ -258,41 +256,26 @@ class BasePage:
 
     # 键盘操作
     def key_enter(self, element_info):
-        """
-        回车
-        """
         self.find_element(element_info).send_keys(Keys.ENTER)
         logger.info("对%s进行回车" % element_info['element_name'])
 
     def key_ctrl_a(self, element_info):
-        """
-        全选
-        """
         self.find_element(element_info).send_keys(Keys.CONTROL, 'a')
         logger.info("对%s全选" % element_info['element_name'])
 
     def key_ctrl_c(self, element_info):
-        """
-        复制
-        """
         self.find_element(element_info).send_keys(Keys.CONTROL, 'c')
         logger.info("对%s复制" % element_info['element_name'])
 
     def key_ctrl_v(self, element_info):
-        """
-        粘贴
-        """
         self.find_element(element_info).send_keys(Keys.CONTROL, 'v')
         logger.info("对%s粘贴" % element_info['element_name'])
 
     def key_ctrl_x(self, element_info):
-        """
-        剪切
-        """
         self.find_element(element_info).send_keys(Keys.CONTROL, 'x')
         logger.info("对%s剪切" % element_info['element_name'])
 
-    # 截图
+    # 截图方法
     def screenshot_as_file(self, *screenshot_path):
         if len(screenshot_path) == 0:
             screenshot_filepath = local_config.screenshot_path
