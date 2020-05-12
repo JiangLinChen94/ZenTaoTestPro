@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
+from common import HTMLTestReportCN
 from common.log_utils import logger
 from common.config_utils import local_config
 from selenium.webdriver.support.wait import WebDriverWait
@@ -276,7 +277,13 @@ class BasePage:
         logger.info("对%s剪切" % element_info['element_name'])
 
     # 截图方法
-    def screenshot_as_file(self, *screenshot_path):
+
+    def screenshot_as_file(self):
+        report_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', local_config.report_path)
+        report_dir = HTMLTestReportCN.ReportDirectory(report_path)
+        report_dir.get_screenshot(self.driver)
+
+    def screenshot_as_file_old(self, *screenshot_path):
         if len(screenshot_path) == 0:
             screenshot_filepath = local_config.screenshot_path
         else:
