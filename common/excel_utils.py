@@ -43,8 +43,9 @@ class ExcelUtils(object):
             all_excel_data.append(row_excel_data)
         return all_excel_data
 
+
 if __name__ == '__main__':
     current_path = os.path.abspath(os.path.dirname(__file__))
-    test_data_path = os.path.join(current_path, '..', local_config.excel_path)
-    sheet_infos = ExcelUtils(test_data_path, 'login').get_sheet_data_by_list()
+    test_data_path = os.path.join(current_path, '..', local_config.testdata_path)
+    sheet_infos = ExcelUtils(test_data_path, 'login_suit').get_sheet_data_by_list()
     print(sheet_infos)
