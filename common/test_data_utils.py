@@ -31,7 +31,7 @@ class TestDataUtils:
             test_data_info = {}
             if self.excel_data[data_rows][2].__eq__(self.test_class_name):
                 test_data_info['test_name'] = self.excel_data[data_rows][1]
-                test_data_info['isnot'] = self.excel_data[data_rows][3]
+                test_data_info['isnot'] = False if self.excel_data[data_rows][3].__eq__('是') else True
                 test_data_info['expected_result'] = self.excel_data[data_rows][4]
                 test_data_info['test_message'] = self.excel_data[data_rows][5]
                 test_parameter = {}

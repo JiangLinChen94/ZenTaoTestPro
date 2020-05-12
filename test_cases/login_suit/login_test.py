@@ -12,6 +12,7 @@ from common.test_data_utils import TestDataUtils
 class LoginTest(SeleniumBaseCase):
     test_class_data = TestDataUtils('login_suit', 'TestZenTaoLogin').convert_excel_data_to_test_data()
 
+    @unittest.skipIf(test_class_data['test_login_success']['isnot'], '')
     def test_login_success(self):
         """
         禅道登录
@@ -23,6 +24,7 @@ class LoginTest(SeleniumBaseCase):
         actual_result = main_page.get_username()
         self.assertEqual(actual_result, test_function_data['expected_result'], test_function_data['test_message'])
 
+    @unittest.skipIf(test_class_data['test_login_fail']['isnot'], '')
     def test_login_fail(self):
         test_function_data = self.test_class_data['test_login_fail']
         self._testMethodDoc = test_function_data['test_name']
