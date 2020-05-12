@@ -55,6 +55,11 @@ class ConfigUtils(object):
         log_level_value = int(self.cfg.get('default', 'log_level'))
         return log_level_value
 
+    @property
+    def testdata_path(self):
+        testdata_path_value = self.cfg.get('default', 'testdata_path')
+        return testdata_path_value
+
 
 local_config = ConfigUtils()
 
@@ -66,3 +71,4 @@ if __name__ == '__main__':
     print(local_config.driver_name)
     print(current_path, '..', local_config.excel_path)
     print(type(local_config.time_out), local_config.time_out)
+    print(local_config.testdata_path)
