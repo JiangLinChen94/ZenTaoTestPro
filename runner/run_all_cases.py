@@ -2,10 +2,12 @@ import os
 import unittest
 from common import HTMLTestReportCN
 from common.config_utils import local_config
+from common.email_utils import EmailUtils
 
 current_path = os.path.abspath(os.path.dirname(__file__))
 case_path = os.path.join( current_path , '..' , local_config.case_path )
 report_path = os.path.join( current_path , '..' , local_config.report_path )
+
 
 class RunAllCases:
     def __init__(self):
@@ -37,3 +39,4 @@ class RunAllCases:
 
 if __name__ == '__main__':
     dir_path = RunAllCases().run()
+    # EmailUtils('python自动化测试报告', dir_path).zip_send_mail()
