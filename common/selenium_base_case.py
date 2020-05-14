@@ -23,7 +23,7 @@ class SeleniumBaseCase(unittest.TestCase):
         errors = self._outcome.errors
         for test, exc_info in errors:
             if exc_info:
-                self.base_page.wait()
+                self.base_page.wait(2)
                 self.base_page.screenshot_as_file()
         logger.info('♥❤♥❤测试方法执行完毕♥❤♥❤!')
         self.base_page.quit_browser()
